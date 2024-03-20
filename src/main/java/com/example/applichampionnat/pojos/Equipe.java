@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 @Entity
 public class Equipe {
@@ -21,20 +22,27 @@ public class Equipe {
     private String telephone;
     private String siteWeb;
 
+    public Collection<Championnat> getChampionnats() {
+        return championnatEquipes.stream().map(ChampionnatEquipe::getChampionnat).collect(Collectors.toList());
+    }
+
     @OneToMany(mappedBy = "equipe1")
     private Collection<Game> homeGames;
 
     @OneToMany(mappedBy = "equipe2")
     private Collection<Game> awayGames;
 
-    @ManyToMany(mappedBy = "equipes")
-    private Collection<Championnat> championnats;
+    @OneToMany(mappedBy = "equipe")
+    private Collection<ChampionnatEquipe> championnatEquipes;
 
     @ManyToOne
     private Stade stade;
 
 
-    public Equipe(String nom, Date dateCreation, String logo, String nomEntraineur, String president, String statut, String siege, String telephone, String siteWeb, Collection<Championnat> championnats, Stade stade) {
+    public Equipe(String nom, Date dateCreation, String logo, String nomEntraineur,
+                  String president, String statut, String siege,
+                  String telephone, String siteWeb,
+                  Collection<ChampionnatEquipe> championnatsEquipes, Stade stade) {
         this.nom = nom;
         this.dateCreation = dateCreation;
         this.logo = logo;
@@ -44,7 +52,6 @@ public class Equipe {
         this.siege = siege;
         this.telephone = telephone;
         this.siteWeb = siteWeb;
-        this.championnats = championnats;
         this.stade = stade;
     }
 
@@ -131,12 +138,28 @@ public class Equipe {
         this.siteWeb = siteWeb;
     }
 
-    public Collection<Championnat> getChampionnats() {
-        return championnats;
+    public Collection<Game> getAwayGames() {
+        return awayGames;
     }
 
-    public void setChampionnats(Collection<Championnat> championnats) {
-        this.championnats = championnats;
+    public void setAwayGames(Collection<Game> awayGames) {
+        this.awayGames = awayGames;
+    }
+
+    public Collection<ChampionnatEquipe> getChampionnatEquipes() {
+        return championnatEquipes;
+    }
+
+    public void setChampionnatEquipes(Collection<ChampionnatEquipe> championnatEquipes) {
+        this.championnatEquipes = championnatEquipes;
+    }
+
+    public Collection<Game> getHomeGames() {
+        return homeGames;
+    }
+
+    public void setHomeGames(Collection<Game> homeGames) {
+        this.homeGames = homeGames;
     }
 
     public Stade getStade() {

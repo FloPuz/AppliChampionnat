@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.stream.Collectors;
 
 @Entity
 public class Championnat {
@@ -24,15 +25,8 @@ public class Championnat {
     @ManyToOne
     private Pays pays;
 
-    @ManyToMany
-    @JoinTable(
-            name = "Championnat_Equipe",
-            joinColumns=
-            @JoinColumn(name="Champ_ID", referencedColumnName="id"),
-            inverseJoinColumns=
-            @JoinColumn(name="Equipe_ID", referencedColumnName="id")
-    )
-    private Collection<Equipe> equipes;
+    @OneToMany(mappedBy = "championnat")
+    private Collection<ChampionnatEquipe> championnatEquipes;
 
     @OneToMany(mappedBy = "championnat")
     private Collection<Journee> journees;
@@ -40,7 +34,7 @@ public class Championnat {
     public Championnat() {
     }
 
-    public Championnat(String nom, String logo, Date dateDebut, Date dateFin, int pointGagne, int pointPerdu, int pointNul, TypeClassement typeClassement, Pays pays, Collection<Equipe> equipes, Collection<Journee> journees) {
+    public Championnat(String nom, String logo, Date dateDebut, Date dateFin, int pointGagne, int pointPerdu, int pointNul, TypeClassement typeClassement, Pays pays, Collection<ChampionnatEquipe> championnatEquipes, Collection<Journee> journees) {
         this.nom = nom;
         this.logo = logo;
         this.dateDebut = dateDebut;
@@ -50,10 +44,14 @@ public class Championnat {
         this.pointNul = pointNul;
         this.typeClassement = typeClassement;
         this.pays = pays;
-        this.equipes = equipes;
         this.journees = journees;
+        this.championnatEquipes = championnatEquipes;
     }
 
+
+    public Collection<Equipe> getEquipes() {
+        return championnatEquipes.stream().map(ChampionnatEquipe::getEquipe).collect(Collectors.toList());
+    }
     public Long getId() {
         return id;
     }
@@ -134,19 +132,19 @@ public class Championnat {
         this.pays = pays;
     }
 
-    public Collection<Equipe> getEquipes() {
-        return equipes;
-    }
-
-    public void setEquipes(Collection<Equipe> equipes) {
-        this.equipes = equipes;
-    }
-
     public Collection<Journee> getJournees() {
         return journees;
     }
 
     public void setJournees(Collection<Journee> journees) {
         this.journees = journees;
+    }
+
+    public Collection<ChampionnatEquipe> getChampionnatEquipes() {
+        return championnatEquipes;
+    }
+
+    public void setChampionnatEquipes(Collection<ChampionnatEquipe> championnatEquipes) {
+        this.championnatEquipes = championnatEquipes;
     }
 }

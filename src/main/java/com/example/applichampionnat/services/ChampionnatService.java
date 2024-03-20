@@ -20,6 +20,9 @@ public interface ChampionnatService {
     List<Equipe> getEquipesByChampionnat(Long idChampionnat);
     List<Journee> getJourneesByChampionnat(Long idChampionnat);
     List<Equipe> getClassementByChampionnat(Long idChampionnat);
+
+    List<Equipe> getClassementByChampionnat(Long idChampionnat, TypeClassement typeClassement);
+
     List<Equipe> getAllEquipes();
     List<Journee> getAllJournees();
     List<Equipe> getEquipesNotInChampionnat(Long idChampionnat);
@@ -27,6 +30,9 @@ public interface ChampionnatService {
     List<Championnat> getChampionnatsByPays(Long idPays);
 
 
+    void addEquipeToChampionnat(Long championnatId, Long equipeId);
+
+    void removeEquipeFromChampionnat(Long championnatId, Long equipeId);
 }
 
 
