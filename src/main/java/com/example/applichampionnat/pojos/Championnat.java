@@ -20,6 +20,7 @@ public class Championnat {
     private int pointGagne;
     private int pointPerdu;
     private int pointNul;
+    @Enumerated(EnumType.ORDINAL)
     private TypeClassement typeClassement;
 
     @ManyToOne

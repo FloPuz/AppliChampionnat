@@ -9,8 +9,6 @@ import java.util.List;
 @Repository
 public interface ChampionnatEquipeDao extends JpaRepository<ChampionnatEquipe, Long> {
 
-    List<ChampionnatEquipe> findByChampionnat(Long championnatId);
-
     void deleteByChampionnatIdAndEquipeId(Long championnatId, Long equipeId);
 
     List<ChampionnatEquipe> findByChampionnatId(Long idChampionnat);
