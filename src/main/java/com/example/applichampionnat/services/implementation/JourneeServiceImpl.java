@@ -1,9 +1,14 @@
 package com.example.applichampionnat.services.implementation;
 
 import com.example.applichampionnat.dao.*;
+import com.example.applichampionnat.pojos.Championnat;
+import com.example.applichampionnat.pojos.Game;
+import com.example.applichampionnat.pojos.Journee;
 import com.example.applichampionnat.services.JourneeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 class JourneeServiceImpl implements JourneeService {
@@ -23,4 +28,38 @@ class JourneeServiceImpl implements JourneeService {
     @Autowired
     private ChampionnatDao championnatDao;
 
+    @Override
+    public Journee addJournee(Journee journee) {
+        return null;
+    }
+
+    @Override
+    public Journee getJourneeById(Long id) {
+        return null;
+    }
+
+    @Override
+    public List<Journee> getAllJournees() {
+        return null;
+    }
+
+    @Override
+    public void updateJournee(Journee journee) {
+
+    }
+
+    @Override
+    public void deleteJournee(Long id) {
+
+    }
+
+    @Override
+    public List<Game> getGamesByJournee(Long idJournee) {
+        return null;
+    }
+
+    @Override
+    public Championnat getChampionnatByJournee(Long idJournee) {
+        return null;
+    }
 }

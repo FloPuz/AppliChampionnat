@@ -21,7 +21,11 @@ public class Equipe {
     private String telephone;
     private String siteWeb;
 
+    @OneToMany(mappedBy = "equipe1")
+    private Collection<Game> homeGames;
 
+    @OneToMany(mappedBy = "equipe2")
+    private Collection<Game> awayGames;
 
     @ManyToMany(mappedBy = "equipes")
     private Collection<Championnat> championnats;

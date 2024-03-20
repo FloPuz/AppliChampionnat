@@ -6,5 +6,4 @@ public enum TypeClassement {
     GoalDiff,
     DefeatAmount
 
-
 }
