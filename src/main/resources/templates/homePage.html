@@ -34,7 +34,11 @@
     </div>
     <div class="center-side">liste des résultats
         <ul th:each="game : ${games}">
-            <li th:text="${game.scoreEquipe1} + '-' + ${game.scoreEquipe2}"></li>
+            <li>
+                <a th:text="${game.equipe1.nom}" th:href="@{/games/{id}/detail (id = ${game.id})}"></a>
+                <span>-</span>
+                <a th:text="${game.equipe2.nom}" th:href="@{/games/{id}/detail (id = ${game.id})}"></a>
+            </li>
         </ul>
     </div>
 </div>

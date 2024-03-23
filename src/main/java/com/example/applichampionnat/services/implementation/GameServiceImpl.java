@@ -37,12 +37,12 @@ class GameServiceImpl implements GameService {
 
     @Override
     public Game getGameById(Long id) {
-        return null;
+        return gameDao.findById(id).orElse(null);
     }
 
     @Override
     public List<Game> getAllGames() {
-        return null;
+        return gameDao.findAll();
     }
 
     @Override

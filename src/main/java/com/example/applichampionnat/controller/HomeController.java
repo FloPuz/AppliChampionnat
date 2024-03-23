@@ -151,7 +151,7 @@ public class HomeController {
 
         //TODO do a function to get teams and scores.
 
-        List<Game> games = getGames();
+        List<Game> games = gameService.getAllGames();
 
         List<Championnat> championnats = getChampionnats();
 

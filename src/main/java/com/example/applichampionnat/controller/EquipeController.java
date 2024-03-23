@@ -28,6 +28,6 @@ public class EquipeController {
         model.addAttribute("equipe", equipe);
 
         //Redirect sur l'équipe avec ces details
-        return null;
+        return "equipesDetails";
     }
 }

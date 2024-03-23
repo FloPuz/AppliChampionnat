@@ -30,7 +30,7 @@ public class EquipeServiceImpl implements EquipeService {
 
     @Override
     public Equipe getEquipeById(Long id) {
-        return null;
+        return equipeDao.findById(id).orElse(null);
     }
 
     @Override

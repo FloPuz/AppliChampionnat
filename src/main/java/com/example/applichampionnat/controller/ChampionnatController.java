@@ -18,6 +18,8 @@ public class ChampionnatController {
     @Autowired
     private ChampionnatService championnatService;
 
+
+
     @GetMapping("/championnats")
     public String showListChampionnats(Model model){
         List<Championnat> championnats = championnatService.getAllChampionnats();

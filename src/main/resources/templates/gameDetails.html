@@ -26,23 +26,15 @@
 <body>
 <div class="body-container">
     <div>
-        Championnat
-        Détails :
-        <span>nom :</span>
-        <span th:text="${championnat.nom}"></span>
+        Game
+        Détails : <br>
+        <span>Equipe 1 :</span>
+        <a th:text="${game.equipe1.nom}" th:href="@{/equipes/{id}/equipesDetail (id=${game.equipe1.id})}"></a>
+        <span th:text="${game.scoreEquipe1}"></span>
         <br>
-        <span>pays: </span>
-        <span th:text="${championnat.pays.getNom()}"></span>
-
-        <h4>Classement</h4>
-
-        <ul th:each="equipe : ${classementChamp}">
-            <li>
-                <a th:text="${equipe.nom}" th:href="@{/equipes/{id}/equipesDetail (id=${equipe.id})}"></a>
-            </li>
-        </ul>
-
-
+        <span>Equipe 2: </span>
+        <a th:text="${game.equipe2.nom}" th:href="@{/equipes/{id}/equipesDetail (id=${game.equipe1.id})}"></a>
+        <span th:text="${game.scoreEquipe2}"></span>
     </div>
 </div>
 </body>
