@@ -1,9 +1,14 @@
 package com.example.applichampionnat.controller;
 
+import com.example.applichampionnat.pojos.Championnat;
+import com.example.applichampionnat.pojos.Game;
 import com.example.applichampionnat.pojos.User;
+import com.example.applichampionnat.services.ChampionnatService;
+import com.example.applichampionnat.services.GameService;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -19,6 +24,12 @@ public class HomeController {
 
     @Autowired
     private HttpSession httpSession;
+
+    @Autowired
+    private GameService gameService;
+
+    @Autowired
+    private ChampionnatService championnatService;
 
     public HomeController() {
 
@@ -135,10 +146,34 @@ public class HomeController {
         return view;
     }
 
-    @GetMapping("/acceuil")
-    public ModelAndView showAcceuil() {
-        ModelAndView view = new ModelAndView();
+    @GetMapping("/home")
+    public String showAcceuil(Model model) {
 
-        return view;
+        //TODO do a function to get teams and scores.
+
+        List<Game> games = getGames();
+
+        List<Championnat> championnats = getChampionnats();
+
+        model.addAttribute("champs", championnats);
+        model.addAttribute("games", games);
+        gameService.getGamesByJournee(1L);
+        //view.addObject("games",);
+        return "homePage";
+    }
+
+    public List<Game> getGames() {
+        List<Game> games = new ArrayList<>();
+        Game game = new Game();
+        game.setId(1L);
+        game.setScoreEquipe1(1);
+        game.setScoreEquipe2(2);
+        games.add(game);
+
+        return games;
+    }
+
+    public List<Championnat> getChampionnats() {
+        return championnatService.getAllChampionnats();
     }
 }
