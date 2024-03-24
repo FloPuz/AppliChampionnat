@@ -36,11 +36,29 @@
 
         <h4>Classement</h4>
 
-        <ul th:each="equipe : ${classementChamp}">
-            <li>
-                <a th:text="${equipe.nom}" th:href="@{/equipes/{id}/equipesDetail (id=${equipe.id})}"></a>
-            </li>
-        </ul>
+        <table>
+            <thead>
+            <tr>
+                <th>Logo</th>
+                <th>Nom</th>
+                <th>Score</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="equipe : ${classementChamp}">
+                <td>
+                    <img th:src="@{/logo/equipe/{logo}(logo=${equipe.logo})}" alt="logo" style="max-width: 100px; max-height: 100px;">
+                </td>
+                <td>
+                    <a th:text="${equipe.nom}" th:href="@{/equipes/{id}/equipesDetail (id=${equipe.id})}"></a>
+                </td>
+                <td>
+                    <!-- <span th:text="${equipe.score}" th:remove="tag"></span> -->
+                    0
+                </td>
+            </tr>
+            </tbody>
+        </table>
 
 
     </div>
