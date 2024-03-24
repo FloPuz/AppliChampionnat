@@ -25,7 +25,7 @@ public class EquipeServiceImpl implements EquipeService {
 
     @Override
     public Equipe addEquipe(Equipe equipe) {
-        return null;
+        return equipeDao.save(equipe);
     }
 
     @Override
@@ -35,7 +35,7 @@ public class EquipeServiceImpl implements EquipeService {
 
     @Override
     public List<Equipe> getAllEquipes() {
-        return null;
+        return equipeDao.findAll();
     }
 
     @Override

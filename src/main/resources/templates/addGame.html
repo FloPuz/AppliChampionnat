@@ -2,9 +2,119 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>championnats</title>
+    <link rel="stylesheet"
+          href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+          integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+          crossorigin="anonymous">
 </head>
+<header>
+    <div class="header-container">
+        <div class="see-results-container navbar-part">
+            <button class="">Voir les différents championats</button>
+        </div>
+        <div class="title-container navbar-part">
+            <h3>
+                Gestion des scores
+            </h3>
+        </div>
+        <div class="login-container navbar-part">
+            <button>Se connecter</button>
+        </div>
+    </div>
+</header>
 <body>
+<div class="body-container">
+    <h4>Ajout d'une partie</h4>
 
+    <form action="#" th:action="@{addGame}" th:object="${game}" method="post">
+        <p>Equipe 1 :
+            <select name="equipe1" th:field="*{equipe1}">
+                <option th:each="equipe : ${equipes}" th:value="${equipe.id}" th:text="${equipe.nom}"></option>
+            </select>
+        </p>
+        <p>Score Equipe 1</p>
+        <input type="number" th:field="*{scoreEquipe1}">
+
+        <p>Equipe 2 :
+            <select name="equipe2" th:field="*{equipe2}">
+                <option th:each="equipe : ${equipes}" th:value="${equipe.id}" th:text="${equipe.nom}"></option>
+            </select>
+        </p>
+        <p>Score Equipe 2</p>
+        <input type="number" th:field="*{scoreEquipe2}">
+        <p>Journée :
+            <select name="journee" th:field="*{journee}">
+                <option th:each="journee : ${journees}" th:value="${journee.id}" th:text="${journee.numero}"></option>
+            </select>
+        </p>
+        <p><input type="submit" value="Ajouter"> <input type="reset" value="reset"> </p>
+    </form>
+</div>
 </body>
+<footer>
+    <div class="footer-container">
+        footer hehe
+    </div>
+</footer>
 </html>
+
+<style>
+
+    html {
+        background-color: white;
+        height: 100%;
+        display: flex;
+        align-content: center;
+        justify-content: center;
+    }
+
+    .header-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 9999;
+        width: 100%;
+        height: 60px;
+        background-color: white;
+        display: flex;
+        justify-content: space-around;
+        box-shadow: black 0 -16px 16px 11px;
+
+        .navbar-part {
+            width: 33.33%;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            align-items: center;
+        }
+    }
+
+    header {
+        width: 100%;
+    }
+
+    footer {
+        height: 60px;
+        background-color: white;
+        width: 100%;
+    }
+
+    body {
+        display: flex;
+        align-content: center;
+        justify-content: center;
+        height: 100%;
+        flex-direction: column;
+        width: 100%;
+        margin: 0;
+    }
+
+    .body-container {
+        background-color: lightgray;
+        width: 70%;
+        height: 100%;
+        margin: 60px auto auto;
+    }
+
+</style>

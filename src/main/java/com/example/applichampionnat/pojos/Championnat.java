@@ -2,6 +2,7 @@ package com.example.applichampionnat.pojos;
 
 import com.example.applichampionnat.enums.TypeClassement;
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Collection;
 import java.util.Date;
@@ -15,7 +16,9 @@ public class Championnat {
 
     private String nom;
     private String logo;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateDebut;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateFin;
     private int pointGagne;
     private int pointPerdu;
