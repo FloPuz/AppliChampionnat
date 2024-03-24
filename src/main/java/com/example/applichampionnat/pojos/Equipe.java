@@ -1,6 +1,7 @@
 package com.example.applichampionnat.pojos;
 
 import jakarta.persistence.*;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Collection;
 import java.util.Date;
@@ -13,6 +14,7 @@ public class Equipe {
     private Long id;
 
     private String nom;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date dateCreation;
     private String logo;
     private String nomEntraineur;

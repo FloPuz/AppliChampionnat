@@ -30,7 +30,7 @@ class JourneeServiceImpl implements JourneeService {
 
     @Override
     public Journee addJournee(Journee journee) {
-        return null;
+        return journeeDao.save(journee);
     }
 
     @Override
@@ -40,7 +40,7 @@ class JourneeServiceImpl implements JourneeService {
 
     @Override
     public List<Journee> getAllJournees() {
-        return null;
+        return journeeDao.findAll();
     }
 
     @Override

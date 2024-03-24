@@ -25,17 +25,17 @@ public class EquipeServiceImpl implements EquipeService {
 
     @Override
     public Equipe addEquipe(Equipe equipe) {
-        return null;
+        return equipeDao.save(equipe);
     }
 
     @Override
     public Equipe getEquipeById(Long id) {
-        return null;
+        return equipeDao.findById(id).orElse(null);
     }
 
     @Override
     public List<Equipe> getAllEquipes() {
-        return null;
+        return equipeDao.findAll();
     }
 
     @Override

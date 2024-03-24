@@ -30,7 +30,7 @@ class PaysServiceImpl implements PaysService {
 
     @Override
     public List<Pays> getAllPays() {
-        return null;
+        return paysDao.findAll();
     }
 
     @Override
