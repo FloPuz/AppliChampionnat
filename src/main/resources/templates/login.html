@@ -5,6 +5,21 @@
     <title>Title</title>
 </head>
 <body>
-tatata
+    <h2>Se connecter</h2>
+<form action="#" th:action="@{login}" th:object="${user} " method="post">
+    <p>nom</p>
+    <input type="text" placeholder="nom" th:field="*{nom}">
+    <p>pseudo</p>
+    <input type="text" placeholder="pseudo" th:field="*{pseudo}">
+    <p>email</p>
+    <input type="email" placeholder="xxxxxx@xxx" th:field="*{email}">
+    <p>mot de passe</p>
+    <input type="password" placeholder="xxx" th:field="*{mdp}">
+
+    <input type="submit" value="Se connecter">
+</form>
+
+
+
 </body>
 </html>

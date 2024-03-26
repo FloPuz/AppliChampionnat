@@ -53,8 +53,14 @@ public class HomeController {
         return view;
     }
 
+    @GetMapping(value = {"/manage"})
+    public String goToManageView (Model model) {
 
-    @PostMapping(value = {"/auth"})
+        return "manage";
+    }
+
+
+    @PostMapping(value = {"/login"})
     public ModelAndView signOrLogIn(User user, @RequestParam(name = "isInscription", defaultValue = "false") boolean isInscription) {
         ModelAndView view = new ModelAndView();
         List<String> errorList = new ArrayList<>();
@@ -85,7 +91,7 @@ public class HomeController {
             httpSession.setAttribute("authenticatedMembre", new Object());
             view.addObject("isConnected", true);
 
-            view.setViewName("redirect:/");
+            view.setViewName("redirect:/home");
 
         } else {
             // Traitement de la connexion
@@ -93,15 +99,14 @@ public class HomeController {
                     || user.getEmail().isEmpty() || user.getMdp().isEmpty()) {
                 errorList.add("Veuillez remplir tous les champs.");
             } else {
-                //User authenticatedUser = userService.authenticateUser(user, errorList);
-//                if (authenticatedUser != null) {
-//                    // Stocker l'utilisateur authentifié dans la session
-//                    httpSession.setAttribute("authenticatedMembre", authenticatedUser);
-//                    view.addObject("isConnected", true);
-//                    view.setViewName("redirect:/recettes");
-//                } else {
-//                    errorList.add("Adresse email inconnu");
-//                }
+                if (user != null) {
+                    // Stocker l'utilisateur authentifié dans la session
+                    httpSession.setAttribute("authenticatedMembre", user);
+                    view.addObject("isConnected", true);
+                    view.setViewName("redirect:/manage");
+                } else {
+                    errorList.add("Adresse email inconnu");
+                }
             }
             }
         if (!errorList.isEmpty()) {
@@ -121,7 +126,7 @@ public class HomeController {
         // Vérification de l'authentification à chaque accès à la page d'accueil
         User authenticatedMembre = (User) httpSession.getAttribute("authenticatedMembre");
         if (authenticatedMembre != null) {
-            view = new ModelAndView("redirect:/recettes");
+            view = new ModelAndView("redirect:/home");
             view.addObject("membre", authenticatedMembre);
             view.addObject("pseudo", authenticatedMembre.getPseudo());
             view.addObject("isConnected", true);
@@ -131,6 +136,7 @@ public class HomeController {
             view.addObject("isInscription", false);
             view.addObject("isConnected", false);
             view.addObject("errors", Collections.singletonList("Veuillez vous connecter."));
+            view.addObject("user", new User());
         }
 
         return view;
