@@ -37,10 +37,10 @@
 #
 # INSERT INTO Championnat_Equipe(points,championnat_id,equipe_id)
 # VALUES
-#     (0,1,1),
-#     (0,1,2),
-#     (0,1,3),
-#     (0,1,4);
+#     (10,1,1),
+#     (12,1,2),
+#     (13,1,3),
+#     (16,1,4);
 #
 #
 #
